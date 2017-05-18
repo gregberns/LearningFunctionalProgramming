@@ -215,5 +215,5 @@ In 1965, Sir Tony Hoare introduced null reference. Since then he apologised for 
 
 Many programmers have been using them so long they don't realize there ARE other options.
 
-The other options are `Option`'s. Option is a type in most FP langs. You can either have a `Some<T>` or a `None`. So instead of returning null, None can be returned. This may appear to be a subtle difference, but it results in significantly improved code.
+The other options are `Option`'s (also known as `Maybe` types in certain languages). Option is a type in most FP langs. You can either have a `Some<T>` or a `None`. So instead of returning null, None can be returned. This may appear to be a subtle difference, but it results in significantly improved code.
 
