@@ -209,7 +209,11 @@ Lets say there was a 'module' that had several pure functions attached to it, an
 Some would argue that you are 'exposing the inner workings of the class', but FP would say, no were just exposing 'capabilities' or functions you can perform on an object.
 
 
+## Stop using null
 
+In 1965, Sir Tony Hoare introduced null reference. Since then he apologised for that and called it [The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare). If the inventor of null pointers and references has condemned them, why the rest of us should be using them?
 
+Many programmers have been using them so long they don't realize there ARE other options.
 
+The other options are `Option`'s. Option is a type in most FP langs. You can either have a `Some<T>` or a `None`. So instead of returning null, None can be returned. This may appear to be a subtle difference, but it results in significantly improved code.
 
