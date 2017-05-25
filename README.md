@@ -11,30 +11,35 @@ First things first...
 ## What you DO NOT need to do to learn Functional Programming (FP)
 
 * YOU DO NOT NEED TO learn a new language - If you know Javascript or C# you're good to go. No need to try and take on a new language.
-* YOU DO NOT NEED TO learn scary terms like 'monad', 'functor' or 'monoid'. These are scary mathematical terms. IGNORE THEM. (For now. At some point there are some simple ideas that you can use to remember what each is)
+* YOU DO NOT NEED TO learn scary terms like 'monad', 'functor' or 'semigroup'. These are mathematical terms. IGNORE THEM. (For now. At some point there are some simple ideas that you can use to remember what each is.)
 * YOU DO NOT NEED TO learn Haskell. In fact, if you are a C#/JS dev, do not go and try and learn it first. Its a steep learning curve and there are better ways of getting started.
 
 ## What you CAN do to get started down the FP road
 
 * Most functions should be 'Pure' functions - If you do nothing else, do this. I guarentee you will be a happier developer for it.  (Pure functions will be discussed further below.)
-* NO MORE FOR / FOR EACH LOOPS - For loops are evil. They start with one line in them and grow like a virus.
+* NO MORE FOR LOOPS - For loops are evil. They start with one line and grow like a virus. Use Linq's `Select` instead.
+* Use Linq to process all lists of objects. `Select`, `Where` and `Aggregate` are the ones to start with.
 * Separate IO (HTTP/Disk/DB calls) from business logic and data transformations - Think IO, PureFx, IO, PureFx, IO, PureFx. 
-* Move State out of 'complex' objects - If you're familiar with React/Redux, move State out of your classes into objects that will be 'passed through a pipeline and 'transformed'.
+* Move State out of 'complex' objects - Move State out of your classes into objects that can be passed through a pipeline and transformed.
 * Classes ONLY do one of a couple things: 1) do IO, 2) are data objects (think 'DTOs'), or 3) have a collection of pure functions
-* Make all methods 'public' methods (in C#) - If a method is 'pure' why shouldn't it be public?
 
-There are a couple(-ish) exceptions to the above 'guidelines', but not really.
+## Notes
 
-## Notes on C#
+### On C#
 
-Unfortunatly, C# is not a great language to do heavy FP in. LINQ is fantastic, but it only goes so far. Functions are kind of a first class citizen, but the signatures required get quite ugly very quickly. If you are working in JS, you may have a bit more luck.
+C# and Linq is a great place to start with FP. The challenge is that functions can be passed around as `Func<object, object>` but larger signatures can become difficult to read. Once you've used Linq to get rid of ForEach loops, you can look at libraries like (LanguageExt)[https://github.com/louthy/language-ext] to take the next FP step.
+
+### On Javascript
+
+JS is a great functional language. The challenge you'll find is because its dynamic, ensuring types match up can be a bit challenging. To get started, use `map`, `filter` and `reduce` functions on arrays to process them. When you're ready for the next step, look at (Rambda)[http://ramdajs.com/] or (lodash/fp)[https://github.com/lodash/lodash/wiki/FP-Guide]. (Note: lodash is great but there are some things lodash/fp does that will make more sense later)
 
 ## Pure Functions
+
+Pure functions are the most important thing to understand when 
 
 Think of a pure function as one that you could call a million times, and it will always return the same thing, AND there will be no 'effects' like writing to the database, console, HTTP, etc.
 
 Impure:
-
 
 ```
 var i = 0;
@@ -59,7 +64,11 @@ To test an impure function you also need to make sure that the environment is in
 
 The benefits of pure functions abound. Parallelizing code, reasoning, testing, composing (combining multiple pure functions), and many more benefits come out of using a majority of pure functions.
 
-# No More For Loops
+### Further Reading
+
+* Lambda Calculus - Don't worry, you don't have to remember calculus to understand lambda calculus. Think of lamda calculus as only being able to use JS lambda ('arrow') functions to create everything, like `if`, `equals`, `true`, and recursion. Check out (this)[https://github.com/gregberns/FunctionalExamples/blob/master/JSLambdasAllTheWayDown.js] and (this)[https://github.com/gregberns/FunctionalExamples/blob/master/LambdaCalculusIntro.md] for more info.
+
+## No More For Loops
 
 For loops are evil. 
 
