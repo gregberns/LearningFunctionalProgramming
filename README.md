@@ -18,7 +18,7 @@ First things first...
 
 * Most functions should be 'Pure' functions - If you do nothing else, do this. I guarentee you will be a happier developer for it.  (Pure functions will be discussed further below.)
 * NO MORE FOR LOOPS - For loops are evil. They start with one line and grow like a virus. Use Linq's `Select` instead.
-* Use Linq to process all lists of objects. `Select`, `Where` and `Aggregate` are the ones to start with.
+* Use 'Higher Order' functions to process lists of items. `Select`, `Where` and `Aggregate` in Linq and `map`, `filter`, and `reduce` in JS.
 * Separate IO (HTTP/Disk/DB calls) from business logic and data transformations - Think IO, PureFx, IO, PureFx, IO, PureFx. 
 * Move State out of 'complex' objects - Move State out of your classes into objects that can be passed through a pipeline and transformed.
 * Classes ONLY do one of a couple things: 1) do IO, 2) are data objects (think 'DTOs'), or 3) have a collection of pure functions
