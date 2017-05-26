@@ -27,19 +27,23 @@ First things first...
 
 ### On C#
 
-C# and Linq is a great place to start with FP. The challenge is that functions can be passed around as `Func<object, object>` but larger signatures can become difficult to read. Once you've used Linq to get rid of ForEach loops, you can look at libraries like (LanguageExt)[https://github.com/louthy/language-ext] to take the next FP step.
+C# and Linq are a great place to start with FP. The challenge is that functions can be passed around as `Func<object, object>` but when these signatures become larger they can become difficult to read. Once you've used Linq to get rid of ForEach loops, you can look at libraries like (LanguageExt)[https://github.com/louthy/language-ext] to take the next FP step.
 
 ### On Javascript
 
-JS is a great functional language. The challenge you'll find is because its dynamic, ensuring types match up can be a bit challenging. To get started, use `map`, `filter` and `reduce` functions on arrays to process them. When you're ready for the next step, look at (Rambda)[http://ramdajs.com/] or (lodash/fp)[https://github.com/lodash/lodash/wiki/FP-Guide]. (Note: lodash is great but there are some things lodash/fp does that will make more sense later)
+Javascript is a great functional language. The challenge you'll find is because its dynamic, ensuring types match up can be a bit challenging. To get started, use `map`, `filter` and `reduce` functions on arrays to process them. When you're ready for the next step, look at (Rambda)[http://ramdajs.com/] or (lodash/fp)[https://github.com/lodash/lodash/wiki/FP-Guide]. (Note: lodash is great but there are some things lodash/fp does that will make more sense later)
 
 ## Pure Functions
 
-Pure functions are the most important thing to understand when 
+Pure functions are the most important thing to understand in FP. 
+
+If a function always returns the same thing, based on the same inout, the function is reliable. If a function is reliable you can use it over and over without adverse side effects. This is a Pure Function.
 
 Think of a pure function as one that you could call a million times, and it will always return the same thing, AND there will be no 'effects' like writing to the database, console, HTTP, etc.
 
-Impure:
+Impure: 
+
+The reason this is impure is that it will return a different value each time it is called.
 
 ```
 var i = 0;
@@ -50,15 +54,19 @@ void increment() {
 
 Pure:
 
+This is pure because everytime you supply a value, the value plus one is returned. An error isn't returned some times. An invalid value won't be returned on occasion. Its always the same return value based on the same input.
+
 ```
 int increment(i) {
   return i + 1;
 }
 ```
 
-Pure functions allow us to 'reason' about what the code is going to do very easily. 
+Pure functions give us the ability to 'reason' about what the code is going to do very easily. 
 
 Impure code makes it a challenge to understand what 'effects' will occur in the environment when a method is called.
+
+(Note: When it comes to FP, you will hear a lot about 'impure' and side effects, they are important concepts.)
 
 To test an impure function you also need to make sure that the environment is in a particular 'state' before you execure the test. With Pure functions, everytime you call the function with the same parameters it will ALWAYS return the same value.
 
@@ -69,6 +77,8 @@ The benefits of pure functions abound. Parallelizing code, reasoning, testing, c
 * Lambda Calculus - Don't worry, you don't have to remember calculus to understand lambda calculus. Think of lamda calculus as only being able to use JS lambda ('arrow') functions to create everything, like `if`, `equals`, `true`, and recursion. Check out (this)[https://github.com/gregberns/FunctionalExamples/blob/master/JSLambdasAllTheWayDown.js] and (this)[https://github.com/gregberns/FunctionalExamples/blob/master/LambdaCalculusIntro.md] for more info.
 
 ## No More For Loops
+
+Along with writing more 'pure functions' you should also stop using For or ForEach loops.
 
 For loops are evil. 
 
@@ -86,7 +96,7 @@ But then the turn into:
 // { 1 .. 100 } :: meaning a list of 100 items
 List list = new List<String>() { 1 .. 100 }
 foreach (var i in list) {
-  Console.WriteLine(i);
+  method1(i);
 }
 void method1(String i) {
   // oops... now we have a serious performance issue...
@@ -115,9 +125,9 @@ for (var i = 1; i > 100; i++) {
 }
 ```
 
-But how is that testable??? Other than debugging or visually looking at the console, how to you make sure that you got the 'i > 100' correct (cause I can never remember). How do you make sure you got the `(i == 15) = "FizzBuzz"` case correct?
+But how is that testable??? Other than debugging or visually looking at the console, how to you make sure that you got the 'i > 100' correct?? How do you make sure you got the `(i == 15) = "FizzBuzz"` case correct?
 
-What if you pulled out the 'core' logic, so you could validate each case (there are 4) are correct?
+What if you pulled out the 'core' logic, so you could validate each case are correct? (there are 4)
 
 ```
 Enumerable.Range(1, 100)
@@ -133,13 +143,13 @@ string FizzBuzz(i) {
 }
 ```
 
-See how the data processing logic is separated from the usage of the logic?
+See how the logic is separated from the usage of the logic?
 
-The use of `Select`, `Where`, and `Aggregate` in C# and corresponding `map', `filter`, and `reduce` functions in JS, can help you pull out the complex logic done to list items, so the logic can be done in small, testable functions.
+Using `Select`, `Where`, and `Aggregate` in C# and corresponding `map`, `filter`, and `reduce` functions in JS, can help you start pulling out the complex logic done to list items, so the logic can be done in small, testable functions.
 
 ## Separate IO from Logic
 
-IO is slooooooow. And generally not easily testable. So lets get it out of the easily testable, fast code.
+IO is slooooooow. And terribly difficult to test. So lets get it out of the easily testable, fast code.
 
 Lets make IO EXPLICIT. so when we do it, we know we are doing it, and it is obvious.
 
