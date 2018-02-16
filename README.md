@@ -12,4 +12,8 @@ This was an attempt to explore with some functional code snippets and ideas.
 
 # Ramblings
 
-Mostly disjoint and incomplete thoughts on why FP concepts have made me a less shitty developer. Also notes on things I really dont understand but hope to one day.
+Mostly disjoint and incomplete thoughts on why FP concepts have made me a less shitty developer. 
+
+# Notes
+
+Notes on things I really dont understand, but hope to one day, but probaly wont.

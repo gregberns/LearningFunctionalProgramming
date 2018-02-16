@@ -1,4 +1,4 @@
-# Patterns For Clarity and Reusability
+# Patterns For Clarity and Reusability - Interface, Domain, Clients
 
 Article Published:
 
