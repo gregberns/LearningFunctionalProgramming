@@ -10,7 +10,7 @@ var person = _personRepository.Find(id);
 
 But then are expected to know that the `person` could be null/empty.
 
-``
+```
 let person = _personRepository.Find(id);
 
 person.Name.ToLower() //Oops, NullException thrown here...
