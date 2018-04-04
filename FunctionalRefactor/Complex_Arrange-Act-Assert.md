@@ -22,7 +22,6 @@ public static async Task Run(EventData eventHubMessage, TraceWriter log)
     }
     catch(Exception ex)
     {
-        
         await LogException(ex, log).ConfigureAwait(false);
         log.Info(ex.Message);
         throw;
@@ -76,7 +75,6 @@ public static HttpClient GetHttpClient(string subscriberKey)
     {
         throw;
     }
-
 }
 ```
 
@@ -145,7 +143,6 @@ public static HttpClient GetHttpClient(string serviceEndpoint) {
         _HttpClient.BaseAddress = new Uri(serviceEndpoint);
         _HttpClient.Timeout.Add(new TimeSpan(0,10,0));
     }
-
     return _HttpClient;     
 }
 ```
