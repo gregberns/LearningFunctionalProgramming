@@ -2,6 +2,8 @@
 
 In this seni-complex example, we take a function that has logic and IO mixed through out. Notice how the calls to `GetEnvironmentVariable`s is mixed in with the logic to arrange our problem.
 
+It's hard to see, but there is also a hidden bug with `subscriberKey` that isn't very evident until the problem is rearranged.
+
 ```cs
 public static async Task Run(EventData eventHubMessage, TraceWriter log)
 {
