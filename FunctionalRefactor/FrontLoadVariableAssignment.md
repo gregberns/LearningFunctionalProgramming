@@ -19,7 +19,7 @@ function urlToString(url) {
 
 Refactored to:
 
-```
+```javascript
 function urlToString(url) {
   let { base, path } = url;
   let queryParams = queryParamsToString(url.queryParams);
