@@ -6,6 +6,10 @@ This repository is full of things I've written (mostly incomplete and bad) and p
 
 Check out the 'Papers' folder for writings, mostly older than I am, which will rock your world once you understand them.
 
+# People 
+
+Here are some people in the functional programming community worth paying attention to. (This is a very short, very incomplete list)
+
 # Functional Examples
 
 This was an attempt to explore with some functional code snippets and ideas.
