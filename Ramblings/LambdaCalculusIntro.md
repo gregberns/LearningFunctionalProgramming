@@ -1,3 +1,5 @@
+# Lambda Calculus
+
 You can also start with the underpinnings of functional programming: lambda calculus.
 
 ```
@@ -36,3 +38,7 @@ creating Fortran, in his 'acceptance paper' said we were doing it all wrong,
 and were working at way too low levels of abstraction.
 
 http://worrydream.com/refs/Backus-CanProgrammingBeLiberated.pdf
+
+## Lets Go Crazy!
+
+[Pure insanity](https://github.com/sjsyrek/presentations/blob/master/lambda-calculus/lambda.js)
