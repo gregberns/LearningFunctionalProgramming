@@ -34,6 +34,14 @@ There is more cleanup to do before its posted, but hopefully it should be availa
 
 ## Leveling Up
 
+### Books
+
+In no particular order:
+
+* [Professor Frisby's Mostly adequate guide to Functional Programming by Dr. Boolean (Brian Lonsdorf)](https://github.com/MostlyAdequate/mostly-adequate-guide) - (Free) Quite good, a bit quirky
+* [Functional-Light JavaScript by Kyle Simpson](https://github.com/getify/Functional-Light-JS) - (Free) From the author of 'You Don't Know JS' is a great intro to functional programming in Javascript
+* [Functional Programming in C#](https://www.manning.com/books/functional-programming-in-c-sharp) - (Paid)Excellent book if you're coming from C#
+
 ### Ramblings - A bit more advanced
 
 * [Patterns For Clarity and Reusability - Interface, Domain, Clients](https://medium.com/@gregberns/patterns-for-clarity-and-reusability-676039a69519) - Think 'Onion Architecture' but a simpler implementation for smaller projects.
