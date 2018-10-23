@@ -4,8 +4,7 @@ This repository is full of things I've written (mostly incomplete and bad) and p
 
 ## Learning FP as an Object Oriented Developer
 
-[Learning Functional Programing as an Object Oriented Developer](./oo-to-fp.md)
-
+[Learning Functional Programing as an Object Oriented Developer](./oo-to-fp.md) is a set of excercises a group (or individual) can go through to start understanding the ideas that lie at the core of functional programming.
 
 ## Papers
 
