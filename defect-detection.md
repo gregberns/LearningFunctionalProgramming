@@ -52,6 +52,7 @@ These numbers come from [Code Complete](http://aroma.vn/web/wp-content/uploads/2
 **Table 20-2 Defect-Detection Rates**
 
 | Removal Step                          | Lowest Rate | Modal Rate | Highest Rate |
+|---------------------------------------|-------------|------------|--------------|
 | Informal design reviews               | 25%         | 35%        | 40%          |
 | Formal design inspections             | 45%         | 55%        | 65%          |
 | Informal code reviews                 | 20%         | 25%        | 35%          |
