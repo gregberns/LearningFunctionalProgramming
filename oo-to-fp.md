@@ -48,5 +48,9 @@ The objective is once EOP is learned in C#/Java/JS, it makes it much easier to t
 
 ### Future Ideas
 
+* Higher Order Functions
+  * Do an intro to LINQ - both syntaxes, lists and single items(Option/Maybe)
+  * ETL of parsing/vaidation of a JSON message file. Can use LINQ
+  * Can we build a structure on the fly to do this?
 * Build the `maybe` data structure, show how its used, and how to access it’s internal data (encapsulation). Show how `map` is used to handle the data.
 * Show how async/await is almost `do` notation
