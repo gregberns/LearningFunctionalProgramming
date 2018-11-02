@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
@@ -50,47 +52,85 @@ namespace SideEffectsAsValues
             //     .Print();
 
             //UniSession us = UniObjects.OpenSession(lHostName, lUser, lPassword, lAccount, lServiceType);
-            UniCommand cmd = null; //us.CreateUniCommand();
+            UniCommand cmd = new UniCommand(); //us.CreateUniCommand();
             
-            var indexFile = "";
-            var developerCode = "";
-
             var ctx = new ExecContext(cmd);
-            var eResp = ctx.Exec($"SELECT {indexFile} WITH DEV.CODE = \"{developerCode}\"");
+                            //Can we pass in a parser to handle the response??
+            var newCtx = ctx.Exec($"Command1")
+                            .Exec("Query executed. 0 records found.", ParseHasZeroRecords)
+                            .Exec($"Error Command2")
+                            //This should not get executed
+                            .Exec($"Command1");
             
+            var cmds = newCtx.CommandsExecuted
+                            .Reverse()
+                            .AsEnumerable()
+                            .Map((Either<ResponseException, Response> e) =>
+                                match(e,
+                                    Left: re => re.ToString(),
+                                    Right: r => r.ToString())
+                            );
+            cmds.ToList().ForEach(i => Console.WriteLine(i));
 
         }
-
-        public void Check(Either<ResponseException, Response> response){
-            //might need a enclosure that has a 'LastResponse'
-            //response.Bind(rite => )
+        public static Either<ResponseException, Response> ParseHasZeroRecords(Response resp) {
+            return resp.ResponseMessage.Contains("0 records found.")
+                ? Left<ResponseException, Response>(new ResponseException(
+                    resp.Command,
+                    new Exception("Parse Error: Command returned 0 records.")))
+                : Right<ResponseException, Response>(resp);
         }
+
     }
     public static class ExecContextExtensions{
-        public static ExecContext Exec(this ExecContext ctx, string statement) {
-                try {
-                    ctx.cmd.Command = statement;
-                    ctx.cmd.Execute();
-                    return ctx.Append(Right(new Response(new Command(statement), ctx.cmd.Response)));
-                } catch (Exception ex) {
-                    return ctx.Append(Left(new ResponseException(new Command(statement), ex)));
-                }
+        public static ExecContext Exec(
+            this ExecContext ctx, string statement) =>
+                ctx.Exec(statement, r => Right(r));
+        
+        public static ExecContext Exec(
+            this ExecContext ctx,
+            string statement,
+            Func<Response, Either<ResponseException, Response>> parse) {
+                
+            if (IsError(ctx.LastResponse())) return ctx;
+            
+            try {
+                ctx.cmd.Command = statement;
+                ctx.cmd.Execute();
+                var res = new Response(new Command(statement), ctx.cmd.Response);
+                var p = parse(res);
+                return ctx.Push(p);
+            } catch (Exception ex) {
+                return ctx.Push(Left(new ResponseException(new Command(statement), ex)));
+            }
         }
+
+        public static bool IsError(Option<Either<ResponseException, Response>> opt) =>
+            opt.Match(
+                //If the last response was an error fall through
+                Some: (Either<ResponseException, Response> e) => e.IsLeft,
+                //But if there is no last response, then execute (because its the first time)
+                None: () => false);
+        
+        
     }
     public class ExecContext {
         public UniCommand cmd;
-        public readonly Lst<Either<ResponseException, Response>> CommandsExecuted;
+        public readonly Stck<Either<ResponseException, Response>> CommandsExecuted;
         public ExecContext(UniCommand command){
             cmd = command;
-            CommandsExecuted = new Lst<Either<ResponseException, Response>>();
+            CommandsExecuted = new Stck<Either<ResponseException, Response>>();
         }
-        private ExecContext(UniCommand command, Lst<Either<ResponseException, Response>> commands){
+        private ExecContext(UniCommand command, Stck<Either<ResponseException, Response>> commands){
             this.cmd = command;
             this.CommandsExecuted = commands;
         }
-        public ExecContext Append(Either<ResponseException, Response> response) {
-            return new ExecContext(cmd, CommandsExecuted.Add(response));
-        }
+        public ExecContext Push(Either<ResponseException, Response> response) =>
+             new ExecContext(cmd, CommandsExecuted.Push(response));
+        public Option<Either<ResponseException, Response>> LastResponse() => 
+            CommandsExecuted.Peek(
+                Some: x => Some(x),
+                None: () => None);
     }
 
     public class Command : Record<Command> {
@@ -98,24 +138,28 @@ namespace SideEffectsAsValues
         public Command(string command){
             CommandStatement = command;
         }
+        public override string ToString() =>
+            CommandStatement;
     }
     public class Response : Record<Response> {
-        //command and response string
         public readonly Command Command;
         public readonly string ResponseMessage;
         public Response(Command command, string response){
             Command = command;
             ResponseMessage = response;
         }
+        public override string ToString() =>
+            $"Successful. Command: {this.Command.ToString()}; Reponse: {this.ResponseMessage}";
     }
     public class ResponseException : Record<ResponseException> {
-        //command and response string
         public readonly Command Command;
         public readonly Exception Exception;
         public ResponseException(Command command, Exception exception){
             Command = command;
             Exception = exception;
         }
+        public override string ToString() =>
+            $"Failed. Command: {this.Command}; Error: {Exception.Message}";
     }
 
     //take a command
@@ -186,6 +230,8 @@ namespace SideEffectsAsValues
             //get command
             //exec command
             //set response
+            if (Command.Contains("Error")) throw new Exception($"Command Error: {Command}");
+            Response = $"Command Executed: {Command}";
         }
     }
     public class UniObjects{
