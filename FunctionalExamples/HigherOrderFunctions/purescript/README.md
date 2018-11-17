@@ -26,7 +26,7 @@ Note: If using VSCode, there are two plugins that might be helpful: `PureScript 
 Once in the REPL these commands will be helpful
 
 ```
-:r  - will 'sync' the REPL with any changes you've made to the file
+:r  - will recompile your program
 :q  - will exit you out of the REPL
 ```
 
