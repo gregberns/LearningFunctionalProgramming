@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using LanguageExt;
 using static LanguageExt.Prelude;
+using Microsoft.Extensions.Configuration;
 
 namespace SideEffectsAsValues
 {
@@ -10,6 +11,19 @@ namespace SideEffectsAsValues
     {
         static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
+
+            ConConnectionInfo.CreateConnection(
+                configuration.GetSection("CSS_HOSTNAME").Value,
+                configuration.GetSection("CSS_USERNAME").Value,
+                 configuration.GetSection("CSS_USERPASSWORD").Value,
+                 configuration.GetSection("CSS_ACCOUNT").Value
+            );
+            
+            
+
             new DoStuff().Do();
             Console.WriteLine("Done.");
         }
@@ -206,20 +220,27 @@ namespace SideEffectsAsValues
         // execCommand :: Command -> CommandMonad<CommandResult>
 
 
-        // public static ConConnection Connect(ConConnectionInfo connection) {
-        //     return ConConnection();
-        // }
+        public static ConConnection Connect(ConConnectionInfo connection) {
+            
+        }
     }
     public class ConConnectionInfo : Record<ConConnectionInfo> {
         public readonly string Host;
         public readonly string Username;
         public readonly string Password;
-        public ConConnectionInfo(string host, string username, string password){
+        public readonly string Account;
+        public readonly string CssServiceType = "uvcs";
+        private ConConnectionInfo(string host, string username, string password, string account){
             Host = host;
             Username = username;
             Password = password;
+            Account = account;
         }
-        
+        public static Option<ConConnectionInfo> CreateConnection(string host, string username, string password){
+            //Need to look at Validation instead of Option
+            //Do some validation
+            return new ConConnectionInfo(host, username, password, "concord");
+        }
     }
     
 
