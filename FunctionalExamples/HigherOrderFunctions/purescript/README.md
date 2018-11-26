@@ -42,6 +42,12 @@ If this fails, precompiled binaries are available for OSX, Linux, and Windows fr
 npm install -g pulp bower
 ```
 
+### Clone this Project
+
+```
+git clone https://github.com/gregberns/LearningFunctionalProgramming/
+```
+
 ### Open the REPL
 
 ```
