@@ -6,7 +6,8 @@ The following is a set of excercises and lessions to learn functional programmin
 
 * Improving FizzBuzz
 * Functional Programming for Non-programmers
-* Refactoring problems
+* Refactoring Problems
+* Intro to Higher Order Functions
 * Function Composition
 * Expression Oriented Programming
 
