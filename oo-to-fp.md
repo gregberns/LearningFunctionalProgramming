@@ -30,6 +30,10 @@ Those are just valuable attributes that fall out of having this "referential tra
 
 [Refactoring Patterns](https://github.com/gregberns/refactor-spectacular/tree/master#refactoring-patterns) will show a couple patterns to use when refactoring to a more expression based or functional style.
 
+### Intro To Higher Order Functions
+
+Learn the power of higher order function (functions that accept or return functions) using PureScript. How we can do inversion of control by passing functions?  [Project site](https://github.com/gregberns/LearningFunctionalProgramming/tree/master/FunctionalExamples/HigherOrderFunctions/purescript)
+
 ### Function Composition
 
 Use a [string parsing example](./CodeExamples/string-parsing.js) to compare and contrast a 'standard' parsing example with one done with function composition.
@@ -41,10 +45,6 @@ The objective is to show off how creating simple, re-usable, general functions c
 [Expression Oriented programming](https://github.com/gregberns/LearningFunctionalProgramming/blob/master/Ramblings/YouDontKnowFunctionalProgramming.md#expression-oriented-programming) is a paradigm or style you can start using in your imperative code bases to move toward a more Expression based or Functional style.
 
 The objective is once EOP is learned in C#/Java/JS, it makes it much easier to think in a functional way and start writing larger pieces of functional code.
-
-
-
-
 
 ### Future Ideas
 
