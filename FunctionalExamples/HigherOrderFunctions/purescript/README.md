@@ -52,6 +52,7 @@ git clone https://github.com/gregberns/LearningFunctionalProgramming/
 
 ```
 > cd LearningFunctionalProgramming/FunctionalExamples/HigherOrderFunctions/purescript
+> psc-package build
 > pulp repl
 ```
 
