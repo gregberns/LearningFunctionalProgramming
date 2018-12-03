@@ -7,9 +7,9 @@ import Prelude
 
 --Define a constant
 -- read: `x` is defined as an Integer
-x :: Int
--- `x` is 5
-x = 5
+xx :: Int
+-- `xx` is 5
+xx = 5
 
 -- Define the `add` function
 -- read: `add` takes an Int and Int as parameters and returns an Int
@@ -18,12 +18,24 @@ plus :: Int -> Int -> Int
 --    adds them together, and returns the result
 plus x y = x + y
 
+-- int plus(x, y) {
+--   return x + y;
+-- }
+
+-- const plus = (x, y) => x + y;
+
 -- Define the `string concat` function
 -- read: `concat` takes two strings and returns a string
 concat :: String -> String -> String
 -- `concat` takes `a` and `b` which are
 --    strings, concats them, and returns a string
 concat a b = a <> b
+
+
+--do show function to illustrate
+doShow i = "some string "<> i
+
+
 
 -- Define a function called `f`, takes an Int returns an Int
 f :: Int -> Int
@@ -46,6 +58,9 @@ g = \a -> a + 10
 -- Do the parenthesis change anything?
 h :: Int -> (Int -> Int)
 h i j = (i + j) * 2
+
+-- explore partial applications
+-- hh a = h 15
 
 -- No, but... 
 -- What is the purpose of them here?
@@ -100,6 +115,11 @@ i k = k 6
 j :: forall x. (Int -> x) -> x
 j k = k 6
 
+-- C# Version
+-- T j<T>(Func<Int, T> fn) {
+--   return fn(6);
+-- }
+
 -- In the repl
 -- > j f
 -- 11
@@ -111,6 +131,14 @@ j k = k 6
 -- We don't need to write this for strings and ints and bools
 id :: forall x. x -> x
 id a = a
+
+-- Why is this valuable?
+-- In c# what could a method with this signature do?
+-- T id<T>(T thing)
+
+-- Answer: Anything. Change 'thing', write to 
+--   the database, launch a missle.
+-- In Purescript/Haskell, there is one and only one implementation.
 
 -- In the repl
 -- > id "hello"

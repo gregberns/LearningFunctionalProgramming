@@ -73,6 +73,7 @@ r f a = f a
 -- > r (\a -> a <> " World!") "Hello"
 -- "Hello World!"
 
+-- > r (\a -> show a <> " World!") 5
 
 -- Woah! We just used the same function `r` to handle Ints and Strings
 
@@ -187,4 +188,3 @@ tt fa fb = (\a -> fb (fa a))
 -- Higher Order Functions on different data structures.
 -- But first need to understand what types of data structures 
 -- we have available to us and their syntax.
-
