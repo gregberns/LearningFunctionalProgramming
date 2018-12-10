@@ -6,6 +6,7 @@
     "arrays",
     "console",
     "effect",
+    "foldable-traversable",
     "prelude",
     "psci-support"
   ]

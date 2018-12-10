@@ -3,7 +3,7 @@ module HofInPractice where
 import Prelude
 import Data.Array
 import Undefined
-
+import Data.Foldable (foldl)
 
 __ = undefined
 _0_ :: Int

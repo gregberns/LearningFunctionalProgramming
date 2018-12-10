@@ -1,3 +1,5 @@
 .env
 bin/
 obj/
+
+FunctionalExamples/HigherOrderFunctions/purescript/\.psci_modules/
