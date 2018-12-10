@@ -1,3 +1,4 @@
 .psc-package/
 .psci-modules/
+.psc-ide-port
 output/

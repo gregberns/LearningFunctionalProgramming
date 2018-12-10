@@ -70,10 +70,13 @@ accounts =
   },
   { number: 234
   , balance: 150
+  },
+  { number: 345
+  , balance: 200
   }]
 
 -- Use `filter` to find an account
--- > findAccount 123 
+-- > findAccount 123 accounts
 -- [{ balance: 100, number: 123 }] 
 findAccount :: Int -> Array Account -> Array Account
 findAccount acctNumber accts =  filter (\acct -> acct.number == __) accts
