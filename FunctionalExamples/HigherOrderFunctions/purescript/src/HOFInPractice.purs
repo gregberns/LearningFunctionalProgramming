@@ -48,8 +48,33 @@ modifyBalanceBy :: Int -> Array Account -> Array Account
 modifyBalanceBy amount accts = map (\acct -> acct { balance = _0_} ) accts
 
 
--- Add all balances together
--- > aggregateBalances accounts
--- 250
+{- Add all balances together
+    > aggregateBalances accounts
+    250
+  Hint: use `:t` to see the signature of `foldl`
+
+  Think of `foldl` as a function that reduces an array to one value.
+  Like: ['a','b','c'] to 'abc'
+    Or  [1,2,3] to 6
+-}
 aggregateBalances :: Array Account -> Int
 aggregateBalances accts = foldl (\accumulator acct -> __) 0 accts 
+
+
+combineAccounts :: Array Account -> Account
+combineAccounts accts = 
+  foldl 
+    (\acc acct -> acc { balance = acc.balance + acct.balance}) 
+    ({balance: 0, number: 123456}) 
+    accts
+ 
+{- Lets replicate `retrieveBalances` but use `foldl` instead of `map`
+
+  HINT: the `snoc` function can be used to add an item to the end of an array
+ -}
+retrieveBalancesWithFold :: Array Account -> Array Int
+retrieveBalancesWithFold accts = 
+  foldl 
+  (\acc act -> snoc acc act.balance) 
+  [] 
+  accts
