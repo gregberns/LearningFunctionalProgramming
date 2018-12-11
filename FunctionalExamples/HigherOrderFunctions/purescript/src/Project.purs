@@ -102,7 +102,7 @@ processAccount :: Int -> Maybe Account
 processAccount accountNumber =
   andThen (fetchAccount accountNumber) (\account ->
   andThen (fetchTransactions accountNumber) (\transactions ->
-  pure $ applyTransactions account transactions
+  pure (applyTransactions account transactions)
   ))
 
 
