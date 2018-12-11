@@ -32,9 +32,12 @@ concat :: String -> String -> String
 concat a b = a <> b
 
 
---do show function to illustrate
-doShow i = "some string "<> i
-
+-- The `show` function can be used to convert 
+-- objects to their string representation
+-- > showConvertsToString 5
+-- "5"
+showConvertsToString :: Int -> String
+showConvertsToString int = show int
 
 
 -- Define a function called `f`, takes an Int returns an Int
@@ -57,7 +60,7 @@ g = \a -> a + 10
 
 -- Do the parenthesis change anything?
 h :: Int -> (Int -> Int)
-h i j = (i + j) * 2
+h a b = (a + b) * 2
 
 -- explore partial applications
 -- hh a = h 15

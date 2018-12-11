@@ -190,64 +190,64 @@ tt fa fb = (\a -> fb (fa a))
 -- we have available to us and their syntax.
 
 
-public List<string> soething(List<string> arr) {
-  return arr.Select
-}
+-- public List<string> soething(List<string> arr) {
+--   return arr.Select
+-- }
 
-//Select
-//Where
-//Aggregate
-//SelectMany
+-- //Select
+-- //Where
+-- //Aggregate
+-- //SelectMany
 
 --add string 'length' function, so we can change the 'b'
 
 
-data Maybee a =
-  Something a
-  Nothing
+-- data Maybee a =
+--   Something a
+--   Nothing
 
-mapp :: (a -> b) -> Maybee a -> Maybee b
-mapp f (Nothing) = Nothing 
-mapp f (Maybee a) = Maybee (f a)
+-- mapp :: (a -> b) -> Maybee a -> Maybee b
+-- mapp f (Nothing) = Nothing 
+-- mapp f (Maybee a) = Maybee (f a)
 
-mapp (\x -> x + 2) (Maybee 3) = Maybee 5
-mapp (\x -> x + 2) (Nothing) = Nothing
-
-
-
-agg :: (b -> a -> b) -> List a -> b
-
-agg (\acc a -> acc + a) 0 [1,2,3,4] = 10
-0 + 1 = 1
-1 + 2 = 3
-3 + 3 = 6
-6 + 4 = 10
-
-addIntList :: List Int -> Int
-addIntList = agg (\acc a -> acc + a) 0 
+-- mapp (\x -> x + 2) (Maybee 3) = Maybee 5
+-- mapp (\x -> x + 2) (Nothing) = Nothing
 
 
-mapp :: (a -> b) -> Array a -> Array b 
-mapp f arr = 
 
-filter :: (a -> Bool) -> Array a -> Array b
+-- agg :: (b -> a -> b) -> List a -> b
 
-listIsGreaterThan3_1 arr = filter (\x -> x > 3) arr
+-- agg (\acc a -> acc + a) 0 [1,2,3,4] = 10
+-- 0 + 1 = 1
+-- 1 + 2 = 3
+-- 3 + 3 = 6
+-- 6 + 4 = 10
 
-listIsGreaterThan3_2 = filter (\x -> x > 3)
+-- addIntList :: List Int -> Int
+-- addIntList = agg (\acc a -> acc + a) 0 
 
-listIsGreaterThan3_1 [1,2,3,4]
 
-function filter(arr){
-  var list = [1,2,3,4]
-  var newList = []
-  foreach (x in list) {
-    if x > 3 then {
-      newList.push(x)
-    }
-  }
-  return newList
-}
+-- mapp :: (a -> b) -> Array a -> Array b 
+-- mapp f arr = 
+
+-- filter :: (a -> Bool) -> Array a -> Array b
+
+-- listIsGreaterThan3_1 arr = filter (\x -> x > 3) arr
+
+-- listIsGreaterThan3_2 = filter (\x -> x > 3)
+
+-- listIsGreaterThan3_1 [1,2,3,4]
+
+-- function filter(arr){
+--   var list = [1,2,3,4]
+--   var newList = []
+--   foreach (x in list) {
+--     if x > 3 then {
+--       newList.push(x)
+--     }
+--   }
+--   return newList
+-- }
 
 
 
