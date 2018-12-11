@@ -118,7 +118,6 @@ namespace SideEffectsAsValues
                 return ctx.Push(Left(new ResponseException(new Command(statement), ex)));
             }
         }
-
         public static bool IsError(Option<Either<ResponseException, Response>> opt) =>
             opt.Match(
                 //If the last response was an error fall through
