@@ -78,7 +78,7 @@ Once in the REPL these commands will be helpful
 
 In your favorite text editor, open the `purescript` directory.
 
-If you are unfamiliar with the purescript syntax start here:
+To get familiar with syntax, start here:
 
 ```
 src/BasicSyntax.purs
@@ -88,4 +88,6 @@ Then move onto:
 
 ```
 src/HigherOrderFunctions.purs
+src/HOFInPractice.purs
+src/ApplyTransactions.purs
 ```
