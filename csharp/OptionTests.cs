@@ -59,7 +59,7 @@ namespace csharp
         {
             var result_odds = Some(2)
                             // Uncomment the following once you've implemented Filter
-                            // .Filter(i => i % 2 == 0)
+                            // .Filter(i => i % 2 == 1)
                             ;
             // Assert.Equal(None<int>(), result_odds);
         }
